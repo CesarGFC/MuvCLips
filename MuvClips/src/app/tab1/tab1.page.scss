@@ -1,0 +1,12 @@
+ion-card {
+    margin:2%;
+    max-width: 200px;
+    width: 200px;
+    max-height: 250px;
+    height: 250px;
+    display: inline-block;
+    position:relative;
+}
+ion-card:hover{
+    zoom: 105%;
+}
