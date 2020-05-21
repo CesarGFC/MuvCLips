@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tab5</ion-title>
+    <ion-title>MuvCLips</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+<ion-split-pane contentId="main">
+  <!--  our side menu  -->
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>REGISTRO DE PELICULAS</ion-title>
+        <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
+          VISTAS
+        </ion-button>
+        <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
+          FAVORITAS
+        </ion-button>
+        <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
+          MARCADAS POR VER
+        </ion-button>
+      </ion-toolbar>
+    </ion-header>
+  </ion-menu>
 
+  <!-- the main content -->
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-split-pane>
 </ion-content>
