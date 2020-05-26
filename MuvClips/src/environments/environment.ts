@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyCEKg3tvb-7c1xkSmVjtwcBxwxygqR1xq8',
+    authDomain: 'muvclips.firebaseapp.com',
+    databaseURL: 'https://muvclips.firebaseio.com',
+    projectId: 'muvclips',
+    storageBucket: 'muvclips.appspot.com',
+    messagingSenderId: '160268909874',
+    appId: '1:160268909874:web:442bc5516b6d87bf9b2b2b',
+    measurementId: 'G-CTPJFTN6FK'
+  }
 };
 
 /*
