@@ -7,15 +7,22 @@ ion-toolbar{
     right:1%;
     display:block;
 }
+
 ion-card {
     margin:2%;
-    max-width: 200px;
-    width: 200px;
-    max-height: 250px;
-    height: 250px;
+    max-width: 100px;
+    width: 100px;
+    // max-height: 150px;
+    // height: 150px;
     display: inline-block;
     position:relative;
 }
+
 ion-card:hover{
     zoom: 105%;
+}
+
+#logo {
+    width: 25px;
+    height: 25px;
 }

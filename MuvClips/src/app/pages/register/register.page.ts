@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseUserService } from '../../services/firebaseUser/firebase-user.service';
+import { FirebaseUserService } from '../../services/firebase/firebaseUser/firebase-user.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { User } from 'src/app/models/user/user';
 import { RouterService } from '../../services/router/router.service';

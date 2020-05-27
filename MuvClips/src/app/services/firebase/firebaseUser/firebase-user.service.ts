@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user/user';
+import { User } from '../../../models/user/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { RouterService } from '../router/router.service';
+import { RouterService } from '../../router/router.service';
 
 @Injectable({
   providedIn: 'root'
