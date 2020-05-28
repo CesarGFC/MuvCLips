@@ -50,7 +50,9 @@ export class RegisterPage implements OnInit {
       name: this.registerGroup.get('name').value,
       lastName: this.registerGroup.get('lastName').value,
       email: this.registerGroup.get('email').value,
-      password: this.registerGroup.get('password').value
+      password: this.registerGroup.get('password').value,
+      favorites: [],
+      watchLater: []
     };
 
     this.firebase.saveUser(user).then(() => {
