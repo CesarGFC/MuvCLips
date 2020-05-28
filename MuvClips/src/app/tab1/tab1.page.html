@@ -24,7 +24,7 @@
       <h1>Películas</h1>
     </ion-slide>
     <ion-card *ngFor="let movie of movies">
-      <img src="{{movie.cover}}" *ngIf="movie.type == 'P' && !movie.new">
+      <img src="{{movie.cover}}" *ngIf="movie.type == 'P' && !movie.new" (click)="watchMovie(movie)">
     </ion-card>
   </div>
 </ion-content>

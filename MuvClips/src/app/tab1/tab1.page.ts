@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../services/firebase/movie/movie.service';
 import { Movie } from '../models/movie/movie';
+import { RouterService } from '../services/router/router.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,7 +12,7 @@ export class Tab1Page {
 
   movies: Movie[];
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private router: RouterService) {
     this.movieService.getMovies().subscribe(data => {
       this.movies = data.map(p => {
         return {
@@ -32,6 +33,10 @@ export class Tab1Page {
         };
       });
     });
+  }
+
+  watchMovie(movie: Movie) {
+    this.router.navigateToWithParams('movie', movie);
   }
 
 }
