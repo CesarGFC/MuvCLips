@@ -24,8 +24,6 @@ export class MoviePage implements OnInit {
   }
 
   play() {
-    this.video.play(this.movie.movie).catch(() => {
-      this.util.showMessageAlert('Atención', 'Algo salió mal al intentar reproducirse');
-    });
+    this.video.play(this.movie.movie);
   }
 }
