@@ -1,18 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      MuvCLips
+      <ion-searchbar [animated]="true" placeholder="Buscar títulos" (ionInput)="filterList($event)"></ion-searchbar>
     </ion-title>
-    
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-searchbar animated placeholder="Buscar títulos"></ion-searchbar>
+  <ion-item *ngFor="let movie of movies" (click)="watchMovie(movie)">
+    <ion-avatar>
+      <img [src]="movie.cover"/>
+    </ion-avatar>
+    <ion-item>
+      <ion-label>{{movie.title}}</ion-label>
+    </ion-item>
+  </ion-item>
 </ion-content>
