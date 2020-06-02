@@ -34,7 +34,11 @@ export class MoviePage implements OnInit {
   }
 
   watchLater() {
-
+    this.auth.getUser().onAuthStateChanged((user) => {
+      if (user) {
+        this.auth.addWatchLater(user.email, this.movie.id);
+      }
+    });
   }
 
   play() {

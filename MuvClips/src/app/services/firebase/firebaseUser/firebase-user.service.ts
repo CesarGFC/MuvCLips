@@ -29,6 +29,10 @@ export class FirebaseUserService {
     });
   }
 
+  exist() {
+    return this.firestore.collection('users');
+  }
+
   createAccount(email: string, password: string) {
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
@@ -39,6 +43,10 @@ export class FirebaseUserService {
 
   saveUser(user: User) {
     return this.firestore.collection('users').add(user);
+  }
+
+  signOut() {
+    return this.auth.signOut();
   }
 
   addWatchLater(email: string, idMovie: string) {

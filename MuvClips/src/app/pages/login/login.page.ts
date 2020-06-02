@@ -32,6 +32,8 @@ export class LoginPage implements OnInit {
     const password = this.loginGroup.get('password').value;
 
     this.firebase.signIn(email, password).then(() => {
+      this.loginGroup.get('email').setValue('');
+      this.loginGroup.get('password').setValue('');
       this.router.navigateTo('tabs');
     })
     .catch(() => {

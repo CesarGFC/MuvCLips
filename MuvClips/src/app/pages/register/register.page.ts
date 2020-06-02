@@ -55,22 +55,31 @@ export class RegisterPage implements OnInit {
       watchLater: []
     };
 
-    this.firebase.saveUser(user).then(() => {
-      this.firebase.createAccount(email, password).then(() => {
-        this.util.showMessageToast('Se registró exitosamente');
-        this.firebase.signIn(email, password).then(() => {
-          this.router.navigateTo('tabs');
-        })
-        .catch(() => {
-          this.util.showMessageAlert('Atención', 'Este al iniciar sesión, vuelva a intentarlo');
-          this.router.navigateTo('');
+    this.firebase.exist().ref.where('email', '==', email).get().then((u) => {
+      if (u.size === 0) {
+        this.firebase.saveUser(user).then(() => {
+          this.firebase.createAccount(email, password).then(() => {
+            this.util.showMessageToast('Se registró exitosamente');
+            this.firebase.signIn(email, password).then(() => {
+              this.router.navigateTo('tabs');
+            })
+            .catch(() => {
+              this.util.showMessageAlert('Atención', 'Error al iniciar sesión, vuelva a intentarlo');
+              this.router.navigateTo('');
+            });
+          })
+          .catch(() => {
+            this.util.showMessageAlert('Atención', 'Algo salió mal, por favor verifique su conexión a Internet');
+          });
+        }).catch(() => {
+          this.util.showMessageAlert('Atención', 'Algo salió mal, por favor verifique su conexión a Internet');
         });
-      })
-      .catch(() => {
-        this.util.showMessageAlert('Atención', 'Este correo ya existe');
-      });
-    }).catch(() => {
-      this.util.showMessageAlert('Atención', 'Algo salió mal, por favor verifique su conexión a Internet');
+      } else {
+        this.util.showMessageAlert('Atención', 'Este correo electronico ya existe');
+      }
+    })
+    .catch(() => {
+      this.util.showMessageAlert('Atención', 'Algo salió mal, verifique su conexión a Internet');
     });
   }
 

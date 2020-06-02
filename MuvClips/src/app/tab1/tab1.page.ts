@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MovieService } from '../services/firebase/movie/movie.service';
 import { Movie } from '../models/movie/movie';
 import { RouterService } from '../services/router/router.service';
+import { FirebaseUserService } from '../services/firebase/firebaseUser/firebase-user.service';
+import { UtilsService } from '../services/utils/utils.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +14,10 @@ export class Tab1Page {
 
   movies: Movie[];
 
-  constructor(private movieService: MovieService, private router: RouterService) {
+  constructor(private movieService: MovieService,
+              private router: RouterService,
+              private firebase: FirebaseUserService,
+              private util: UtilsService) {
     this.movieService.getMovies().subscribe(data => {
       this.movies = data.map(p => {
         return {
@@ -37,6 +42,15 @@ export class Tab1Page {
 
   watchMovie(movie: Movie) {
     this.router.navigateToWithParams('movie', movie);
+  }
+
+  signOut() {
+    this.firebase.signOut().then(() => {
+      this.router.navigateTo('');
+    })
+    .catch(() => {
+      this.util.showMessageAlert('Atención', 'No se pudo cerrar la sesión, verifique su conexión a Internet');
+    });
   }
 
 }
