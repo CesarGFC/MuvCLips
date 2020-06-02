@@ -42,7 +42,11 @@ export class Tab2Page {
   }
 
   watchMovie(movie: Movie) {
-    this.router.navigateToWithParams('movie', movie);
+    if (movie.type === 'P') {
+      this.router.navigateToWithParams('movie', movie);
+    } else {
+      this.router.navigateToWithParams('serie', movie);
+    }
   }
 
   filterList(evt) {

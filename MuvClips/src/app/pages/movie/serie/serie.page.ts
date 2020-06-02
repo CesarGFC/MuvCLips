@@ -44,6 +44,9 @@ export class SeriePage implements OnInit {
 
       this.seasons = this.serie.seasons;
     });
+
+    this.isInList();
+    this.isInListToWatch();
   }
 
   watchChapter(i: string) {
