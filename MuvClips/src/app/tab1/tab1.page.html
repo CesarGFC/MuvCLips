@@ -19,16 +19,16 @@
   <div>
     <ion-title>Series</ion-title>
     <div *ngFor="let movie of movies" class="position">
-      <ion-card *ngIf="movie.type == 'S' && !movie.new" (click)="watchSerie(movie)">
-        <img src="{{movie.cover}}">
+      <ion-card *ngIf="movie.type == 'S' && !movie.new">
+        <img src="{{movie.cover}}" (click)="watchSerie(movie)">
       </ion-card>
     </div>
   </div>
   <div>
     <ion-title>Películas</ion-title>
     <div *ngFor="let movie of movies" class="position">
-      <ion-card *ngIf="movie.type == 'P' && !movie.new" (click)="watchMovie(movie)">
-        <img src="{{movie.cover}}">
+      <ion-card *ngIf="movie.type == 'P' && !movie.new">
+        <img src="{{movie.cover}}" (click)="watchMovie(movie)">
       </ion-card>
     </div>
   </div>

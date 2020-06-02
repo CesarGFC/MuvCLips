@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +23,7 @@ import { VideoPlayer } from '@ionic-native/video-player/ngx';
             AngularFireDatabaseModule],
   providers: [
     StatusBar,
-    VideoPlayer,
+    StreamingMedia,
     SplashScreen,
     AngularFirestore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
