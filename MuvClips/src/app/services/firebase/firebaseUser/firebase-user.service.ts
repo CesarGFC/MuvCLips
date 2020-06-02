@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { RouterService } from '../../router/router.service';
 import { UtilsService } from '../../utils/utils.service';
+import { Movie } from 'src/app/models/movie/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class FirebaseUserService {
 
   getUser() {
     return this.auth;
+  }
+
+  getFirestore() {
+    return this.firestore;
   }
 
   currentUser() {
@@ -49,6 +54,33 @@ export class FirebaseUserService {
     return this.auth.signOut();
   }
 
+  removeWatchLater(movie: Movie, email: string) {
+    let user: User;
+
+    this.firestore.collection('users').ref.where('email', '==', email).get().then((u) => {
+      u.forEach((doc) => {
+        user = {
+          id: doc.id,
+          name: doc.get('name'),
+          lastName: doc.get('lastName'),
+          email: doc.get('email'),
+          password: doc.get('password'),
+          favorites: doc.get('favorites'),
+          watchLater: doc.get('watchLater')
+        };
+      });
+
+      user.watchLater.splice(user.favorites.indexOf(movie.id), 1);
+
+      this.firestore.collection('users').doc(user.id).set(user).then(() => {
+        this.util.showMessageToast('Se ha removido de su lista para ver más tarde');
+      })
+      .catch(() => {
+        this.util.showMessageAlert('Atención', 'No se pudo remover, verifique su conexión a internet');
+      });
+    });
+  }
+
   addWatchLater(email: string, idMovie: string) {
     let user: User;
 
@@ -72,6 +104,33 @@ export class FirebaseUserService {
       })
       .catch(() => {
         this.util.showMessageAlert('Atención', 'Verifique su conexión a internet');
+      });
+    });
+  }
+
+  removeFavorite(movie: Movie, email: string) {
+    let user: User;
+
+    this.firestore.collection('users').ref.where('email', '==', email).get().then((u) => {
+      u.forEach((doc) => {
+        user = {
+          id: doc.id,
+          name: doc.get('name'),
+          lastName: doc.get('lastName'),
+          email: doc.get('email'),
+          password: doc.get('password'),
+          favorites: doc.get('favorites'),
+          watchLater: doc.get('watchLater')
+        };
+      });
+
+      user.favorites.splice(user.favorites.indexOf(movie.id), 1);
+
+      this.firestore.collection('users').doc(user.id).set(user).then(() => {
+        this.util.showMessageToast('Se ha removido de su lista de favoritos');
+      })
+      .catch(() => {
+        this.util.showMessageAlert('Atención', 'No se pudo remover, verifique su conexión a internet');
       });
     });
   }

@@ -11,4 +11,8 @@ export class MovieService {
   getMovies() {
     return this.firestore.collection('peliculas').snapshotChanges();
   }
+
+  getSeries(id: string) {
+    return this.firestore.collection('series').ref.where('serie', '==', id).get();
+  }
 }

@@ -8,13 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-text-center">
-  <img src="{{movie.cover}}" alt="Algo salió mal" (click)="play()">
-  <ion-item>
-    <ion-label>Calificación: {{movie.punctuation}}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label>Duración: {{movie.duration}}hrs</ion-label>
-  </ion-item>
+  <img src="{{movie.cover}}" alt="Algo salió mal">
   <ion-item>
     <ion-label>Idioma: {{movie.lenguage}}</ion-label>
   </ion-item>
@@ -41,4 +35,22 @@
       </ion-button>
     </ion-buttons>
   </ion-item>
+  <ion-item>
+    <ion-select placeholder="Selecciona una Temporada" interface="popover" [(ngModel)]="SelectedSeason" 
+                (ionChange)="updateList()">
+      <div *ngFor="let t of this.seasons; let i = index">
+        <ion-select-option value="{{i}}">Temporada {{i+1}}</ion-select-option>
+      </div>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="this.chapters.length !== 0">
+    <div *ngFor="let chapter of this.chapters; let i = index">
+      <ion-item (click)="watchChapter(i)">
+        <ion-label>
+          <h3>{{i+1}}. {{get('name', i)}}</h3>
+          <h6>{{get('description', i)}}</h6>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

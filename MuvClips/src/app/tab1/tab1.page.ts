@@ -44,6 +44,10 @@ export class Tab1Page {
     this.router.navigateToWithParams('movie', movie);
   }
 
+  watchSerie(movie: Movie) {
+    this.router.navigateToWithParams('serie', movie);
+  }
+
   signOut() {
     this.firebase.signOut().then(() => {
       this.router.navigateTo('');
