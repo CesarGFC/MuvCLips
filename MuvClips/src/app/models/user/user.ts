@@ -6,4 +6,5 @@ export class User {
     password: string;
     favorites: string[];
     watchLater: string[];
+    viewed: string[];
 }

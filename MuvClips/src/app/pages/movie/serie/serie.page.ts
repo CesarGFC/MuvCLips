@@ -46,7 +46,6 @@ export class SeriePage implements OnInit {
     });
 
     this.isInList();
-    this.isInListToWatch();
   }
 
   watchChapter(i: string) {
@@ -57,6 +56,12 @@ export class SeriePage implements OnInit {
       Object.keys(c).map(ch => {
         if (ch === 'capitulo') {
           link = c[ch];
+        }
+      });
+
+      this.auth.getUser().onAuthStateChanged((user) => {
+        if (user) {
+          this.auth.addViewed(user.email, this.movie.id);
         }
       });
 
@@ -149,39 +154,24 @@ export class SeriePage implements OnInit {
               email: doc.get('email'),
               password: doc.get('password'),
               favorites: doc.get('favorites'),
-              watchLater: doc.get('watchLater')
+              watchLater: doc.get('watchLater'),
+              viewed: doc.get('viewed')
             };
           });
 
           if (this.user.favorites.indexOf(this.movie.id) > -1) {
             this.addedList = true;
           }
+
+          this.isInListToWatch();
         });
       }
     });
   }
 
   isInListToWatch() {
-    this.auth.getUser().onAuthStateChanged((user) => {
-      if (user) {
-        this.auth.getFirestore().collection('users').ref.where('email', '==', user.email).get().then((u) => {
-          u.forEach((doc) => {
-            this.user = {
-              id: doc.id,
-              name: doc.get('name'),
-              lastName: doc.get('lastName'),
-              email: doc.get('email'),
-              password: doc.get('password'),
-              favorites: doc.get('favorites'),
-              watchLater: doc.get('watchLater')
-            };
-          });
-
-          if (this.user.watchLater.indexOf(this.movie.id) > -1) {
-            this.addedToWatch = true;
-          }
-        });
-      }
-    });
+    if (this.user.watchLater.indexOf(this.movie.id) > -1) {
+      this.addedToWatch = true;
+    }
   }
 }

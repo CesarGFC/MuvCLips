@@ -52,7 +52,8 @@ export class RegisterPage implements OnInit {
       email: this.registerGroup.get('email').value,
       password: this.registerGroup.get('password').value,
       favorites: [],
-      watchLater: []
+      watchLater: [],
+      viewed: []
     };
 
     this.firebase.exist().ref.where('email', '==', email).get().then((u) => {

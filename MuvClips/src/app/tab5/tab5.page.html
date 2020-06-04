@@ -1,29 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>MuvCLips</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="start" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-split-pane contentId="main">
-  <!--  our side menu  -->
-  <ion-menu contentId="main">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>REGISTRO DE PELICULAS</ion-title>
-        <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
-          VISTAS
-        </ion-button>
-        <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
-          FAVORITAS
-        </ion-button>
-        <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
-          MARCADAS POR VER
-        </ion-button>
-      </ion-toolbar>
-    </ion-header>
+  <ion-menu side="start" menuId="menu">
+    <ion-content>
+      <ion-list>
+        <div>
+          <ion-button (click)="filter('V')" expand="block" fill="clear" shape="round">
+            <ion-icon name="eye-outline" slot="start"></ion-icon>
+            Vistas
+          </ion-button>
+        </div>
+        <div>
+          <ion-button (click)="filter('F')" expand="block" fill="clear" shape="round">
+            <ion-icon name="star-outline" slot="start"></ion-icon>
+            Favoritos
+          </ion-button>
+        </div>
+        <div>
+          <ion-button (click)="filter('W')" expand="block" fill="clear" shape="round">
+            <ion-icon name="desktop-outline" slot="start"></ion-icon>
+            Marcados Por Ver
+          </ion-button>
+        </div>
+        <div>
+          <ion-button expand="block" fill="clear" shape="round">
+            <ion-icon name="happy-outline" slot="start"></ion-icon>
+            Sugerir una Película o Serie
+          </ion-button>
+        </div>
+      </ion-list>
+    </ion-content>
   </ion-menu>
-
-  <!-- the main content -->
-  <ion-router-outlet id="main"></ion-router-outlet>
-</ion-split-pane>
+  <ion-router-outlet main></ion-router-outlet>
+  
+  <!---------------------------------------------------------------------------------------->
+  
+  <div>
+    <div *ngFor="let movie of moviesToShow" class="position">
+      <ion-card>
+        <img src="{{movie.cover}}" (click)="watchMovie(movie)">
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

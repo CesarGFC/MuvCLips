@@ -29,7 +29,6 @@ export class MoviePage implements OnInit {
     });
 
     this.isInList();
-    this.isInListToWatch();
   }
 
   isInList() {
@@ -44,40 +43,25 @@ export class MoviePage implements OnInit {
               email: doc.get('email'),
               password: doc.get('password'),
               favorites: doc.get('favorites'),
-              watchLater: doc.get('watchLater')
+              watchLater: doc.get('watchLater'),
+              viewed: doc.get('viewed')
             };
           });
 
           if (this.user.favorites.indexOf(this.movie.id) > -1) {
             this.addedList = true;
           }
+
+          this.isInListToWatch();
         });
       }
     });
   }
 
   isInListToWatch() {
-    this.firebase.getUser().onAuthStateChanged((user) => {
-      if (user) {
-        this.firebase.getFirestore().collection('users').ref.where('email', '==', user.email).get().then((u) => {
-          u.forEach((doc) => {
-            this.user = {
-              id: doc.id,
-              name: doc.get('name'),
-              lastName: doc.get('lastName'),
-              email: doc.get('email'),
-              password: doc.get('password'),
-              favorites: doc.get('favorites'),
-              watchLater: doc.get('watchLater')
-            };
-          });
-
-          if (this.user.watchLater.indexOf(this.movie.id) > -1) {
-            this.addedToWatch = true;
-          }
-        });
-      }
-    });
+    if (this.user.watchLater.indexOf(this.movie.id) > -1) {
+      this.addedToWatch = true;
+    }
   }
 
   addList() {
@@ -122,6 +106,12 @@ export class MoviePage implements OnInit {
   }
 
   play() {
+    this.firebase.getUser().onAuthStateChanged((user) => {
+      if (user) {
+        this.firebase.addViewed(user.email, this.movie.id);
+      }
+    });
+
     this.video.watch(this.movie.movie);
   }
 }

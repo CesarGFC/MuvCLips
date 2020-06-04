@@ -66,7 +66,8 @@ export class FirebaseUserService {
           email: doc.get('email'),
           password: doc.get('password'),
           favorites: doc.get('favorites'),
-          watchLater: doc.get('watchLater')
+          watchLater: doc.get('watchLater'),
+          viewed: doc.get('viewed')
         };
       });
 
@@ -93,7 +94,8 @@ export class FirebaseUserService {
           email: doc.get('email'),
           password: doc.get('password'),
           favorites: doc.get('favorites'),
-          watchLater: doc.get('watchLater')
+          watchLater: doc.get('watchLater'),
+          viewed: doc.get('viewed')
         };
       });
 
@@ -105,6 +107,29 @@ export class FirebaseUserService {
       .catch(() => {
         this.util.showMessageAlert('Atención', 'Verifique su conexión a internet');
       });
+    });
+  }
+
+  addViewed(email: string, idMovie: string) {
+    let user: User;
+
+    this.firestore.collection('users').ref.where('email', '==', email).get().then((u) => {
+      u.forEach((doc) => {
+        user = {
+          id: doc.id,
+          name: doc.get('name'),
+          lastName: doc.get('lastName'),
+          email: doc.get('email'),
+          password: doc.get('password'),
+          favorites: doc.get('favorites'),
+          watchLater: doc.get('watchLater'),
+          viewed: doc.get('viewed')
+        };
+      });
+
+      user.viewed.push(idMovie);
+
+      this.firestore.collection('users').doc(user.id).set(user);
     });
   }
 
@@ -120,7 +145,8 @@ export class FirebaseUserService {
           email: doc.get('email'),
           password: doc.get('password'),
           favorites: doc.get('favorites'),
-          watchLater: doc.get('watchLater')
+          watchLater: doc.get('watchLater'),
+          viewed: doc.get('viewed')
         };
       });
 
@@ -147,7 +173,8 @@ export class FirebaseUserService {
           email: doc.get('email'),
           password: doc.get('password'),
           favorites: doc.get('favorites'),
-          watchLater: doc.get('watchLater')
+          watchLater: doc.get('watchLater'),
+          viewed: doc.get('viewed')
         };
       });
 
