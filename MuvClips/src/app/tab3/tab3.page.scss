@@ -1,9 +1,11 @@
-ion-card{
-margin:2%;
-max-width: 580px;
-width: 580px;
-max-height: 250px;
-height: 250px;
-display: inline-block;
-position:relative;
+ion-card {
+    max-width: 100px;
+    width: 100px;
+    max-height: 150px;
+    height: 150px;
+}
+
+.position {
+    display: inline-block;
+    position: relative;    
 }

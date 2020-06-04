@@ -1,35 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-label>+18</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-buttons>
     <ion-title>
       <img src="../../assets/icon/logo.png" alt="Algo saló mal" id="logo"> MuvClips
     </ion-title>
-    <ion-item id="filtro">
-      <ion-label>+18</ion-label>
-      <ion-toggle></ion-toggle>
-    </ion-item>
     <ion-buttons slot="end">
       <ion-button (click)="signOut()">
-        Cerrar Sesión
+        <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
-  <div>
-    <ion-title>Series</ion-title>
-    <div *ngFor="let movie of movies" class="position">
-      <ion-card *ngIf="movie.type == 'S' && !movie.new">
-        <img src="{{movie.cover}}" (click)="watchSerie(movie)">
+  <ion-title>Series</ion-title>
+  <ion-slides [options]="slideOptions">
+    <ion-slide *ngFor="let serie of series">
+      <ion-card *ngIf="!serie.new">
+        <img src="{{serie.cover}}" (click)="watchSerie(serie)">
       </ion-card>
-    </div>
-  </div>
-  <div>
-    <ion-title>Películas</ion-title>
-    <div *ngFor="let movie of movies" class="position">
-      <ion-card *ngIf="movie.type == 'P' && !movie.new">
+    </ion-slide>
+  </ion-slides>
+  <ion-title>Películas</ion-title>
+  <ion-slides [options]="slideOptions">
+    <ion-slide *ngFor="let movie of movies">
+      <ion-card *ngIf="!movie.new">
         <img src="{{movie.cover}}" (click)="watchMovie(movie)">
       </ion-card>
-    </div>
-  </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

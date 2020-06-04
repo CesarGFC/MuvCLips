@@ -13,6 +13,11 @@ import { UtilsService } from '../services/utils/utils.service';
 export class Tab1Page {
 
   movies: Movie[];
+  series: Movie[];
+
+  slideOptions = {
+    slidesPerView: 3
+  };
 
   constructor(private movieService: MovieService,
               private router: RouterService,
@@ -36,6 +41,14 @@ export class Tab1Page {
           movie: p.payload.doc.get('pelicula'),
           type: p.payload.doc.get('tipo')
         };
+      });
+
+      this.series = this.movies.filter((currentMovie) => {
+        return (currentMovie.type.indexOf('S') > -1);
+      });
+
+      this.movies = this.movies.filter((currentMovie) => {
+        return (currentMovie.type.indexOf('P') > -1);
       });
     });
   }

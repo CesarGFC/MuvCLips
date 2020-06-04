@@ -1,27 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      MuvCLips
+    <ion-title class="ion-text-center">
+      Proximos Estrenos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-<ion-card>
-  LA PURGA (EL CORONAVIRUS)
-</ion-card>
-<ion-card>
-  NUNCA ESTUDIES SOLO
-</ion-card>
-<ion-card>
-  SON COMO INGES 4
-</ion-card>
-<ion-card>
-  JOHN TEC 3
-</ion-card>
+  <div>
+    <div *ngFor="let movie of movies" class="position">
+      <ion-card *ngIf="movie.new">
+        <img src="{{movie.cover}}" (click)="watchMovie(movie)">
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

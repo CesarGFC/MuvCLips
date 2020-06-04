@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'serie',
     loadChildren: () => import('./pages/movie/serie/serie.module').then( m => m.SeriePageModule)
+  },
+  {
+    path: 'new-movie',
+    loadChildren: () => import('./pages/movie/new-movie/new-movie.module').then( m => m.NewMoviePageModule)
   }
 ];
 @NgModule({
