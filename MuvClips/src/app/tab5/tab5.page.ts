@@ -26,44 +26,43 @@ export class Tab5Page implements OnInit {
   ngOnInit() {
     this.userService.getUser().onAuthStateChanged((user) => {
       if (user) {
-        this.userService.getFirestore().collection('users').ref.where('email', '==', user.email)
-            .get().then((u) => {
-              u.forEach((doc) => {
-                this.user = {
-                  id: doc.id,
-                  name: doc.get('name'),
-                  lastName: doc.get('lastName'),
-                  email: doc.get('email'),
-                  password: doc.get('password'),
-                  favorites: doc.get('favorites'),
-                  watchLater: doc.get('watchLater'),
-                  viewed: doc.get('viewed')
-                };
-              });
+        this.userService.getFirestore().collection('users').ref.where('email', '==', user.email).onSnapshot((u) => {
+          u.forEach((doc) => {
+            this.user = {
+              id: doc.id,
+              name: doc.get('name'),
+              lastName: doc.get('lastName'),
+              email: doc.get('email'),
+              password: doc.get('password'),
+              favorites: doc.get('favorites'),
+              watchLater: doc.get('watchLater'),
+              viewed: doc.get('viewed')
+            };
+          });
 
-              this.movieService.getMovies().subscribe(data => {
-                this.movies = data.map(p => {
-                  return {
-                    id: p.payload.doc.id,
-                    title: p.payload.doc.get('titulo'),
-                    description: p.payload.doc.get('descripcion'),
-                    duration: p.payload.doc.get('duracion'),
-                    actors: p.payload.doc.get('actores'),
-                    directors: p.payload.doc.get('directores'),
-                    genre: p.payload.doc.get('genero'),
-                    classification: p.payload.doc.get('clasificacion'),
-                    lenguage: p.payload.doc.get('idioma'),
-                    punctuation: p.payload.doc.get('calificacion'),
-                    new: p.payload.doc.get('estreno'),
-                    cover: p.payload.doc.get('caratula'),
-                    movie: p.payload.doc.get('pelicula'),
-                    type: p.payload.doc.get('tipo')
-                  };
-                });
-
-                this.filter('F');
-              });
+          this.movieService.getMovies().subscribe(data => {
+            this.movies = data.map(p => {
+              return {
+                id: p.payload.doc.id,
+                title: p.payload.doc.get('titulo'),
+                description: p.payload.doc.get('descripcion'),
+                duration: p.payload.doc.get('duracion'),
+                actors: p.payload.doc.get('actores'),
+                directors: p.payload.doc.get('directores'),
+                genre: p.payload.doc.get('genero'),
+                classification: p.payload.doc.get('clasificacion'),
+                lenguage: p.payload.doc.get('idioma'),
+                punctuation: p.payload.doc.get('calificacion'),
+                new: p.payload.doc.get('estreno'),
+                cover: p.payload.doc.get('caratula'),
+                movie: p.payload.doc.get('pelicula'),
+                type: p.payload.doc.get('tipo')
+              };
             });
+
+            this.filter('F');
+          });
+        });
       }
     });
   }
