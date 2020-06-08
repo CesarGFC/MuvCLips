@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>moviesSuggested</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="Suggestions">
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size xs="12">
+        <div text-align-center>
+          <ion-item>
+            <ion-input formControlName="movieName" type="text"></ion-input>
+          </ion-item>
+          <ion-button size="large" type="button" [disabled]="!Suggestions.valid" (click)="create()" expand="block">
+            Enviar
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

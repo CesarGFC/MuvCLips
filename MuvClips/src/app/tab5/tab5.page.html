@@ -27,13 +27,13 @@
         <div>
           <ion-button (click)="filter('W')" expand="block" fill="clear" shape="round">
             <ion-icon name="desktop-outline" slot="start"></ion-icon>
-            Marcados Por Ver
+            Marcados por ver
           </ion-button>
         </div>
         <div>
-          <ion-button expand="block" fill="clear" shape="round">
-            <ion-icon name="happy-outline" slot="start"></ion-icon>
-            Sugerir una Película o Serie
+          <ion-button expand="block" fill="clear" shape="round" (click)="openForm()">
+            <ion-icon name="happy-outline" slot="start" ></ion-icon>
+            Sugerir película o serie
           </ion-button>
         </div>
       </ion-list>

@@ -1,9 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-label>+18</ion-label>
-      <ion-toggle></ion-toggle>
-    </ion-buttons>
     <ion-title>
       <img src="../../assets/icon/logo.png" alt="Algo saló mal" id="logo"> MuvClips
     </ion-title>
@@ -16,6 +12,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
+  <ion-title>Peliculas TOP</ion-title>
+  <ion-slides [options]="slideOptions">
+    <ion-slide *ngFor="let movie of moviesTop">
+      <ion-card>
+        <img src="{{movie.cover}}" (click)="watchMovie(movie)">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <ion-title>Series TOP</ion-title>
+  <ion-slides [options]="slideOptions">
+    <ion-slide *ngFor="let serie of seriesTop">
+      <ion-card>
+        <img src="{{serie.cover}}" (click)="watchSerie(serie)">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
   <ion-title>Series</ion-title>
   <ion-slides [options]="slideOptions">
     <ion-slide *ngFor="let serie of series">

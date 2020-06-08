@@ -18,9 +18,10 @@ export class Tab5Page implements OnInit {
   moviesToShow: Movie[] = [];
   title = 'Favoritos';
 
+
   constructor(private menu: MenuController,
               private movieService: MovieService,
-              private router: RouterService,
+              public router: RouterService,
               private userService: FirebaseUserService) { }
 
   ngOnInit() {
@@ -75,7 +76,6 @@ export class Tab5Page implements OnInit {
         const m = this.movies.filter((currentMovie) => {
                   return (currentMovie.id.indexOf(movie) > -1);
                 });
-
         this.moviesToShow.push(m[0]);
       });
 
@@ -123,6 +123,10 @@ export class Tab5Page implements OnInit {
     }
 
     this.router.navigateToWithParams('serie', movie);
+  }
+
+  openForm(){
+    this.router.navigateTo('movies-suggested');
   }
 
 }

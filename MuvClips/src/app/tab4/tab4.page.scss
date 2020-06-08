@@ -1,3 +1,6 @@
+ion-toolbar{
+    text-align: center;
+}
 ion-card{
     margin:3.2%;
     max-width: 350px;
@@ -7,4 +10,20 @@ ion-card{
     display: inline-block;
     position:relative;
 
+}
+ion-button{
+    position: relative;
+    display: inline-block;
+    margin:auto;
+    width:30%;
+}
+
+.position {
+    display: inline-block;
+    position: relative;
+     
+}
+#logo {
+    width: 25px;
+    height: 25px;
 }

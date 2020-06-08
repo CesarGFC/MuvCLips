@@ -14,6 +14,9 @@ export class Tab1Page {
 
   movies: Movie[];
   series: Movie[];
+  moviesTop: Movie[];
+  seriesTop: Movie[];
+
 
   slideOptions = {
     slidesPerView: 3
@@ -50,6 +53,13 @@ export class Tab1Page {
       this.movies = this.movies.filter((currentMovie) => {
         return (currentMovie.type.indexOf('P') > -1);
       });
+      this.seriesTop = this.series.filter((currentMovie) => {
+        return (currentMovie.punctuation > ('5.0'));
+      });
+
+      this.moviesTop = this.movies.filter((currentMovie) => {
+        return (currentMovie.punctuation > ('5.0'));
+      });
     });
   }
 
@@ -59,15 +69,6 @@ export class Tab1Page {
 
   watchSerie(movie: Movie) {
     this.router.navigateToWithParams('serie', movie);
-  }
-
-  signOut() {
-    this.firebase.signOut().then(() => {
-      this.router.navigateTo('');
-    })
-    .catch(() => {
-      this.util.showMessageAlert('Atención', 'No se pudo cerrar la sesión, verifique su conexión a Internet');
-    });
   }
 
 }

@@ -1,17 +1,36 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>MuvCLips</ion-title>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>
+      <img src="../../assets/icon/logo.png" alt="Algo saló mal" id="logo"> MuvClips
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label align-items="start">Control cuenta</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label position="floating">Nueva contraseña</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Confirmar contraseña</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <ion-label>Idioma: Español</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>País: México</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-button size="large" expand="block" (click)="submit">Guardar cambios</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button size="large" expand="block" (click)="signOut()" color="danger">Cerrar sesión</ion-button>
+    </ion-item>
+  </ion-list>
 
-<ion-content class = "contenedores">
-  <ion-card>
-    <ion-title>PELICULAS</ion-title>
-  </ion-card>
-  <ion-card>
-    <ion-title>ACTORES</ion-title>
-  </ion-card>
-  <ion-card>
-    <ion-title>DIRECTORES</ion-title>
-  </ion-card>
 </ion-content>
