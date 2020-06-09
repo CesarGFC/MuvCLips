@@ -22,11 +22,17 @@
               <ion-input formControlName="password" type="password"></ion-input>
             </ion-item>
           </div>
+          <div class="ion-text-center">
+            <ion-label>
+              ¿No recuerdas tu contraseña? <a routerLink='/forgot-password' style="color: black;">Entra aquí</a>
+            </ion-label>
+          </div>
           <div class="ion-padding">
             <ion-button size="large" type="submit" expand="block" (click)="signIn()">Iniciar Sesión</ion-button>
           </div>
         </ion-col>
       </ion-row>
+      
       <div class="ion-text-center">
         <ion-label>
           ¿Nuevo en MuvClips? Crea una <a routerLink='/register' style="color: black;">cuenta</a>

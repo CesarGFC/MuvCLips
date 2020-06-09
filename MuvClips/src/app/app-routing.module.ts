@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'movie-suggestion',
     loadChildren: () => import('./pages/movie-suggestion/movie-suggestion.module').then( m => m.MovieSuggestionPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   }
 ];
 @NgModule({
