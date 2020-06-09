@@ -44,11 +44,11 @@ export class Tab1Page {
       });
 
       this.series = this.movies.filter((currentMovie) => {
-        return (currentMovie.type.indexOf('S') > -1);
+        return (currentMovie.type.indexOf('S') > -1 && !currentMovie.new);
       });
 
       this.movies = this.movies.filter((currentMovie) => {
-        return (currentMovie.type.indexOf('P') > -1);
+        return (currentMovie.type.indexOf('P') > -1 && !currentMovie.new);
       });
     });
   }

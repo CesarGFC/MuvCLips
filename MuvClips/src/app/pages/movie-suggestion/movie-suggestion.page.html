@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sugerir una película</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Escriba una sugerencia</ion-label>
+    <ion-textarea rows="10" cols="20" [(ngModel)]="txt"></ion-textarea>
+  </ion-item>
+
+  <ion-button class="ion-margin" size="large" type="submit" expand="block" (click)="sendSuggestion()">
+    Enviar sugerencia
+  </ion-button>
+</ion-content>
