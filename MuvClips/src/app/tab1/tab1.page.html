@@ -32,4 +32,24 @@
       </ion-card>
     </ion-slide>
   </ion-slides>
+
+  <!---------------------------------------------------------------------------->
+
+  <ion-title>Películas Mejor Calificadas</ion-title>
+  <ion-slides [options]="slideOptions">
+    <ion-slide *ngFor="let movie of moviesTops">
+      <ion-card *ngIf="!movie.new">
+        <img src="{{movie.cover}}" (click)="watchMovie(movie)">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-title>Series Mejor Calificadas</ion-title>
+  <ion-slides [options]="slideOptions">
+    <ion-slide *ngFor="let serie of seriesTops">
+      <ion-card *ngIf="!serie.new">
+        <img src="{{serie.cover}}" (click)="watchSerie(serie)">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

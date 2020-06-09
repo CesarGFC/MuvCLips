@@ -15,6 +15,9 @@ export class Tab1Page {
   movies: Movie[];
   series: Movie[];
 
+  moviesTops: Movie[];
+  seriesTops: Movie[];
+
   slideOptions = {
     slidesPerView: 3
   };
@@ -49,6 +52,14 @@ export class Tab1Page {
 
       this.movies = this.movies.filter((currentMovie) => {
         return (currentMovie.type.indexOf('P') > -1 && !currentMovie.new);
+      });
+
+      this.seriesTops = this.series.filter((currentSerie) => {
+        return (currentSerie.punctuation > '7.0');
+      });
+
+      this.moviesTops = this.movies.filter((currentMovie) => {
+        return (currentMovie.punctuation > '7.0');
       });
     });
   }

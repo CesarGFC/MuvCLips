@@ -27,6 +27,7 @@ export class MovieSuggestionPage implements OnInit {
 
     this.firebase.getFirestore().collection('suggestions').add({suggestion: this.txt}).then(() => {
       this.util.showMessageToast('Su sugerencia ha sido enviada, la tomaremos en cuenta');
+      this.txt = '';
       this.router.navigateTo('tabs');
     }).catch(() => {
       this.util.showMessageAlert('Atención', 'Algo salió mal, verifique su conexión a Internet');
