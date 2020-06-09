@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { MovieService } from '../services/firebase/movie/movie.service';
 import { RouterService } from '../services/router/router.service';
@@ -21,7 +21,8 @@ export class Tab4Page implements OnInit {
   constructor(private menu: MenuController,
               private movieService: MovieService,
               private router: RouterService,
-              private userService: FirebaseUserService) { }
+              private userService: FirebaseUserService,
+              private zone: NgZone) { }
 
   ngOnInit() {
     this.userService.getUser().onAuthStateChanged((user) => {
@@ -68,43 +69,45 @@ export class Tab4Page implements OnInit {
   }
 
   filter(find: string) {
-    this.moviesToShow = [];
+    this.zone.run(() => {
+      this.moviesToShow = [];
 
-    if (find === 'F') {
-      this.user.favorites.forEach((movie) => {
-        const m = this.movies.filter((currentMovie) => {
-                  return (currentMovie.id.indexOf(movie) > -1);
-                });
+      if (find === 'F') {
+        this.user.favorites.forEach((movie) => {
+          const m = this.movies.filter((currentMovie) => {
+            return (currentMovie.id.indexOf(movie) > -1);
+          });
 
-        this.moviesToShow.push(m[0]);
-      });
-
-      this.title = 'Favoritos';
-    } else if (find === 'W') {
-      this.user.watchLater.forEach((movie) => {
-        const m = this.movies.filter((currentMovie) => {
-                  return (currentMovie.id.indexOf(movie) > -1);
-                });
-
-        this.moviesToShow.push(m[0]);
-      });
-
-      this.title = 'Ver más Tarde';
-    } else if (find === 'V') {
-      this.user.viewed.forEach((movie) => {
-        const m = this.movies.filter((currentMovie) => {
-                  return (currentMovie.id.indexOf(movie) > -1);
-                });
-
-        if (m[0] !== undefined) {
           this.moviesToShow.push(m[0]);
-        }
-      });
+        });
 
-      this.title = 'Historial de Vistas';
-    }
+        this.title = 'Favoritos';
+      } else if (find === 'W') {
+        this.user.watchLater.forEach((movie) => {
+          const m = this.movies.filter((currentMovie) => {
+            return (currentMovie.id.indexOf(movie) > -1);
+          });
 
-    this.menu.close('menu');
+          this.moviesToShow.push(m[0]);
+        });
+
+        this.title = 'Ver más Tarde';
+      } else if (find === 'V') {
+        this.user.viewed.forEach((movie) => {
+          const m = this.movies.filter((currentMovie) => {
+            return (currentMovie.id.indexOf(movie) > -1);
+          });
+
+          if (m[0] !== undefined) {
+            this.moviesToShow.push(m[0]);
+          }
+        });
+
+        this.title = 'Historial de Vistas';
+      }
+
+      this.menu.close('menu');
+    });
   }
 
   openMenu() {

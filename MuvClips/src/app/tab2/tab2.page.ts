@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { MovieService } from '../services/firebase/movie/movie.service';
 import { Movie } from '../models/movie/movie';
 import { RouterService } from '../services/router/router.service';
@@ -13,7 +13,7 @@ export class Tab2Page {
   movies: Movie[];
   temporal: Movie[];
 
-  constructor(private movieService: MovieService, private router: RouterService) {
+  constructor(private movieService: MovieService, private router: RouterService, private zone: NgZone) {
     this.initializeMovies();
   }
 
@@ -57,10 +57,12 @@ export class Tab2Page {
       return;
     }
 
-    this.movies = this.movies.filter((currentMovie) => {
+    this.zone.run(() => {
+      this.movies = this.movies.filter((currentMovie) => {
         return (currentMovie.title.toLocaleLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1) ||
                (currentMovie.description.toLocaleLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1) ||
                (currentMovie.lenguage.toLocaleLowerCase().indexOf(searchTerm.toLocaleLowerCase()) > -1);
+      });
     });
   }
 
