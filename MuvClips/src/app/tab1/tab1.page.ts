@@ -71,14 +71,4 @@ export class Tab1Page {
   watchSerie(movie: Movie) {
     this.router.navigateToWithParams('serie', movie);
   }
-
-  signOut() {
-    this.firebase.signOut().then(() => {
-      this.router.navigateTo('');
-    })
-    .catch(() => {
-      this.util.showMessageAlert('Atención', 'No se pudo cerrar la sesión, verifique su conexión a Internet');
-    });
-  }
-
 }

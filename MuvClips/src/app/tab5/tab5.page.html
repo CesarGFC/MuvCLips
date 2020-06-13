@@ -4,6 +4,15 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-label>Label</ion-label>
-  <ion-label>Label</ion-label>
+  <ion-list>
+    <ion-item (click)="changePassword()">
+      <ion-label>Cambiar contraseña</ion-label>
+    </ion-item>
+    <ion-item (click)="about()">
+      <ion-label>Acerca de</ion-label>
+    </ion-item>
+    <ion-item (click)="signOut()">
+      <ion-label>Cerrar Sesión</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
